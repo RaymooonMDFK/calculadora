@@ -1,0 +1,113 @@
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #181818;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 1.5rem;
+    width: 340px;
+    font-family: 'Syne', sans-serif;
+}
+
+.modal-title {
+    color: #c8f060;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+}
+
+.modal-hint {
+    color: #666;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.modal-error {
+    display: none;
+    color: #ff6b6b;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    margin-bottom: 0.8rem;
+}
+
+.modal-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #f0f0f0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-grid .modal-input {
+    margin-bottom: 0;
+}
+
+/* colores por macro */
+.col-cal  { color: #ffd166; }
+.col-prot { color: #c8f060; }
+.col-carb { color: #74b9ff; }
+.col-fat  { color: #fd79a8; }
+.col-fib  { color: #a29bfe; }
+
+.modal-actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: flex-end;
+}
+
+.modal-btn-cancel {
+    background: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 7px;
+    color: #666;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.modal-btn-cancel:hover {
+    border-color: #666;
+    color: #f0f0f0;
+}
+
+.modal-btn-save {
+    background: #c8f060;
+    border: none;
+    border-radius: 7px;
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.modal-btn-save:hover {
+    background: #b5db4a;
+}

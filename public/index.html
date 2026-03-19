@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Dieta</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/_layout.css">
+    <link rel="stylesheet" href="css/_admin_panel.css">
+    <link rel="stylesheet" href="css/_modal.css">
+    <link rel="stylesheet" href="css/_calculator.css">
+    <link rel="stylesheet" href="css/_suggest.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap">
+
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>CALCULADORA DE DIETA</h1>
+        <p>ingresa alimentos y gramos — los macros se calculan solos</p>
+    </header>
+
+    <div class="meals-grid" id="mealsGrid"></div>
+
+    <div class="summary-section">
+        <div class="summary-header">
+            <img src="img/gris.png" alt="details" class="summary-icon">
+            <div class="summary-title">Declaración Nutrimental</div>
+        </div>
+        <div class="summary-grid" id="summaryGrid"></div>
+        <div id="breakdownWrap"></div>
+        <div class="actions-row">
+            <button class="pdf-btn" onclick="exportPDF()">⬇ Descargar PDF</button>
+            <button class="reset-btn" onclick="resetAll()">↺ Limpiar todo</button>
+            <button class="pdf-btn" onclick="openModal()">+ Alimento</button>
+        </div>
+    </div>
+
+    <div class="calc-section">
+        <div class="summary-header">
+            <div class="summary-title">Calculadora de Macros</div>
+        </div>
+
+        <div class="calc-form">
+            <div class="calc-row">
+                <div class="calc-field">
+                    <label class="calc-label">Peso</label>
+                    <div class="calc-input-wrap">
+                        <input id="cPeso" class="calc-input" type="number" min="30" max="250" placeholder="70">
+                        <span class="calc-unit">kg</span>
+                    </div>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Altura</label>
+                    <div class="calc-input-wrap">
+                        <input id="cAltura" class="calc-input" type="number" min="100" max="250" placeholder="170">
+                        <span class="calc-unit">cm</span>
+                    </div>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Edad</label>
+                    <div class="calc-input-wrap">
+                        <input id="cEdad" class="calc-input" type="number" min="10" max="100" placeholder="25">
+                        <span class="calc-unit">años</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calc-row">
+                <div class="calc-field">
+                    <label class="calc-label">Sexo</label>
+                    <select id="cSexo" class="calc-select">
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Actividad</label>
+                    <select id="cActividad" class="calc-select">
+                        <option value="sedentario">Sedentario</option>
+                        <option value="ligero">Ligero (1-3 días/sem)</option>
+                        <option value="moderado">Moderado (3-5 días/sem)</option>
+                        <option value="activo">Activo (6-7 días/sem)</option>
+                        <option value="muy_activo">Muy activo (2x al día)</option>
+                    </select>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Objetivo</label>
+                    <select id="cObjetivo" class="calc-select">
+                        <option value="perder_grasa">Perder grasa</option>
+                        <option value="ganar_musculo">Ganar músculo</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="calcError" class="calc-error"></div>
+
+            <button class="calc-btn" onclick="runCalculator()">Calcular</button>
+        </div>
+
+        <div id="calcResults" class="calc-results">
+            <div class="calc-result-card">
+                <button class="info-btn" onclick="toggleInfo('infoTMB', this)">i</button>
+                <div class="calc-result-label">TMB</div>
+                <div class="calc-result-value" id="resTMB">—</div>
+                <div class="calc-result-unit">kcal base</div>
+            </div>
+            <div class="calc-result-card">
+                <button class="info-btn" onclick="toggleInfo('infoTDEE', this)">i</button>
+                <div class="calc-result-label">TDEE</div>
+                <div class="calc-result-value" id="resTDEE">—</div>
+                <div class="calc-result-unit">kcal totales</div>
+            </div>
+            <div class="calc-result-card accent">
+                <button class="info-btn" onclick="toggleInfo('infoObj', this)">i</button>
+                <div class="calc-result-label">Objetivo</div>
+                <div class="calc-result-value" id="resKcal">—</div>
+                <div class="calc-result-unit">kcal/día</div>
+            </div>
+            <div class="calc-result-card" style="--macro-color: var(--carb-color)">
+                <div class="calc-result-label">Carbohidratos</div>
+                <div class="calc-result-value macro-val" id="resCarbs">—</div>
+                <div class="calc-result-pct" id="resPctCarbs">—</div>
+            </div>
+            <div class="calc-result-card" style="--macro-color: var(--prot-color)">
+                <div class="calc-result-label">Proteína</div>
+                <div class="calc-result-value macro-val" id="resProt">—</div>
+                <div class="calc-result-pct" id="resPctProt">—</div>
+            </div>
+            <div class="calc-result-card" style="--macro-color: var(--fat-color)">
+                <div class="calc-result-label">Grasas</div>
+                <div class="calc-result-value macro-val" id="resGrasas">—</div>
+                <div class="calc-result-pct" id="resPctGrasas">—</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="suggest-section">
+        <div class="summary-header">
+            <div class="summary-title">Sugerir Alimento</div>
+        </div>
+        <div class="suggest-form">
+            <p class="suggest-desc">
+                ¿Falta algún alimento? Mándame la sugerencia y lo reviso para agregarlo.
+            </p>
+
+            <div class="suggest-row">
+                <div class="calc-field">
+                    <label class="calc-label">Nombre del alimento <span class="required">*</span></label>
+                    <input id="sNombre" class="calc-input" type="text" placeholder="ej. Yogurt griego Lala">
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Marca / versión <span class="required">*</span></label>
+                    <input id="sMarca" class="calc-input" type="text" placeholder="ej. Lala, light, sin azúcar">
+                </div>
+            </div>
+
+            <div class="suggest-divider">
+                <span>Declaración nutrimental — opcional, por 100g</span>
+            </div>
+
+            <div class="suggest-row">
+                <div class="calc-field">
+                    <label class="calc-label">Calorías</label>
+                    <div class="calc-input-wrap">
+                        <input id="sCal" class="calc-input" type="number" min="0" placeholder="0">
+                        <span class="calc-unit" style="color:var(--cal-color)">kcal</span>
+                    </div>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Proteína</label>
+                    <div class="calc-input-wrap">
+                        <input id="sProt" class="calc-input" type="number" min="0" placeholder="0">
+                        <span class="calc-unit" style="color:var(--prot-color)">g</span>
+                    </div>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Carbohidratos</label>
+                    <div class="calc-input-wrap">
+                        <input id="sCarb" class="calc-input" type="number" min="0" placeholder="0">
+                        <span class="calc-unit" style="color:var(--carb-color)">g</span>
+                    </div>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Grasas</label>
+                    <div class="calc-input-wrap">
+                        <input id="sGras" class="calc-input" type="number" min="0" placeholder="0">
+                        <span class="calc-unit" style="color:var(--fat-color)">g</span>
+                    </div>
+                </div>
+                <div class="calc-field">
+                    <label class="calc-label">Fibra</label>
+                    <div class="calc-input-wrap">
+                        <input id="sFib" class="calc-input" type="number" min="0" placeholder="0">
+                        <span class="calc-unit" style="color:var(--fib-color)">g</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="suggestError" class="calc-error"></div>
+            <button class="calc-btn" onclick="sendSuggestion()">Enviar sugerencia</button>
+        </div>
+    </div>
+
+    <!-- Modal nuevo alimento -->
+    <div id="addFoodModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-title">+ NUEVO ALIMENTO</div>
+            <div class="modal-hint">valores por cada 100g</div>
+            <div id="modalError" class="modal-error"></div>
+
+            <input id="mNombre" class="modal-input" placeholder="nombre del alimento">
+
+            <div class="modal-grid">
+                <input id="mCal" class="modal-input col-cal" placeholder="calorías" type="number" min="0">
+                <input id="mProt" class="modal-input col-prot" placeholder="proteína g" type="number" min="0">
+                <input id="mCarb" class="modal-input col-carb" placeholder="carbohidratos g" type="number" min="0">
+                <input id="mGras" class="modal-input col-fat" placeholder="grasas g" type="number" min="0">
+                <input id="mFib" class="modal-input col-fib" placeholder="fibra g" type="number" min="0">
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-btn-cancel" onclick="closeModal()">cancelar</button>
+                <button class="modal-btn-save" onclick="submitNewFood()">guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template panel admin -->
+    <template id="adminPanelTemplate">
+        <div class="admin-header">
+            <span class="admin-title"></span>
+            <span class="admin-close" onclick="document.getElementById('adminPanel').remove()">✕</span>
+        </div>
+        <div class="admin-content"></div>
+        <div class="admin-footer">
+            <div class="admin-footer-label">copia esto en la DB del código:</div>
+            <textarea class="admin-textarea" readonly></textarea>
+        </div>
+    </template>
+
+    <script src="js/db.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/calculations.js"></script>
+    <script src="js/autocomplete.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/actions.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/pdf.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/suggest.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+<div class="info-tooltip" id="infoTMB">
+    Tasa Metabólica Basal — calorías que quema tu cuerpo en reposo absoluto, solo para mantenerse vivo.
+</div>
+<div class="info-tooltip" id="infoTDEE">
+    Total Daily Energy Expenditure — calorías que quemas en un día real incluyendo tu actividad. Comer esto mantiene tu
+    peso.
+</div>
+<div class="info-tooltip" id="infoObj">
+    Calorías ajustadas a tu objetivo. Déficit de ~400 kcal para perder grasa, superávit de ~250 kcal para ganar músculo.
+</div>
+
+</html>

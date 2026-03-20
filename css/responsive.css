@@ -1,0 +1,128 @@
+/* =============================================
+   TABLET — max 900px
+   ============================================= */
+@media (max-width: 900px) {
+
+    /* meals: 2 columnas en lugar de auto-fit */
+    .meals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* calculadora: 2 columnas */
+    .calc-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* resultados calculadora: 3 columnas */
+    .calc-results {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* admin panel más angosto */
+    #adminPanel {
+        width: 360px;
+    }
+}
+
+
+/* =============================================
+   MOBILE — max 700px
+   ============================================= */
+@media (max-width: 700px) {
+
+    body {
+        padding: 1rem 0.75rem 3rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    /* meals: 1 columna */
+    .meals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* summary: 2 columnas */
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* calculadora: 1 columna */
+    .calc-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* resultados calculadora: 2 columnas */
+    .calc-results {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* suggest: 1 columna */
+    .suggest-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* botones de acción apilados */
+    .actions-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reset-btn,
+    .pdf-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* modal más angosto */
+    .modal-box {
+        width: calc(100vw - 2rem);
+    }
+
+    /* admin panel ocupa casi todo el ancho */
+    #adminPanel {
+        width: calc(100vw - 2rem);
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+
+    /* tooltip reposicionado para no salirse */
+    .info-tooltip {
+        width: 160px;
+    }
+}
+
+
+/* =============================================
+   MOBILE PEQUEÑO — max 420px
+   ============================================= */
+@media (max-width: 420px) {
+
+    /* summary: 1 columna */
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* resultados calculadora: 1 columna */
+    .calc-results {
+        grid-template-columns: 1fr;
+    }
+
+    /* food row: colapsa gramos debajo del alimento */
+    .food-row {
+        grid-template-columns: 1fr 28px;
+        grid-template-rows: auto auto;
+    }
+
+    .grams-input {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .remove-btn {
+        grid-column: 2;
+        grid-row: 1;
+    }
+}

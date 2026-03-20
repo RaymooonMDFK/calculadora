@@ -1,0 +1,853 @@
+/* =============================================
+   VARIABLES & RESET
+   ============================================= */
+:root {
+    --bg: #0f0f0f;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --muted: #666;
+    --danger: #ff6b6b;
+    --accent: #c8f060;
+    --cal-color: #ffd166;
+    --prot-color: #c8f060;
+    --carb-color: #74b9ff;
+    --fat-color: #fd79a8;
+    --fib-color: #a29bfe;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =============================================
+   MEAL CARD
+   ============================================= */
+.meal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.meal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.meal-icon {
+    font-size: 1.1rem;
+}
+
+.meal-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+.meal-body {
+    padding: 0.8rem;
+}
+
+.meal-macros {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.macro-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    background: #222;
+}
+
+
+/* =============================================
+   FOOD ROW — inputs dentro de cada meal
+   ============================================= */
+.food-row {
+    display: grid;
+    grid-template-columns: 1fr 80px 28px;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+
+.food-input-wrap {
+    position: relative;
+}
+
+.food-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.6rem;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.food-input:focus {
+    border-color: var(--text);
+}
+
+.grams-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    padding: 0.45rem 0.5rem;
+    outline: none;
+    text-align: right;
+    transition: border-color 0.15s;
+}
+
+.grams-input:focus {
+    border-color: var(--text);
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 2px;
+    border-radius: 4px;
+    transition: color 0.15s;
+}
+
+.remove-btn:hover {
+    color: var(--danger);
+}
+
+.add-row-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0.35rem 0.7rem;
+    width: 100%;
+    transition: all 0.15s;
+}
+
+.add-row-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+}
+
+
+/* =============================================
+   AUTOCOMPLETE
+   ============================================= */
+.autocomplete-list {
+    position: absolute;
+    top: calc(100% + 3px);
+    left: 0;
+    right: 0;
+    background: #222;
+    border: 1px solid var(--text);
+    border-radius: 6px;
+    z-index: 100;
+    max-height: 180px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.autocomplete-item {
+    padding: 0.45rem 0.7rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.active {
+    background: var(--text);
+    color: #000;
+}
+
+.autocomplete-item.active {
+    scroll-margin-top: 4px;
+    scroll-margin-bottom: 4px;
+}
+
+.autocomplete-item span.kcal-hint {
+    font-size: 0.68rem;
+    opacity: 0.6;
+}
+
+
+/* =============================================
+   SUMMARY — tarjetas de macros totales
+   ============================================= */
+.summary-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.summary-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.summary-title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+}
+
+.summary-card.cal::before  { background: var(--cal-color); }
+.summary-card.prot::before { background: var(--prot-color); }
+.summary-card.carb::before { background: var(--carb-color); }
+.summary-card.fat::before  { background: var(--fat-color); }
+.summary-card.fib::before  { background: var(--fib-color); }
+
+.summary-card .s-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+}
+
+.summary-card .s-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.summary-card.cal  .s-value { color: var(--cal-color); }
+.summary-card.prot .s-value { color: var(--prot-color); }
+.summary-card.carb .s-value { color: var(--carb-color); }
+.summary-card.fat  .s-value { color: var(--fat-color); }
+.summary-card.fib  .s-value { color: var(--fib-color); }
+
+.summary-card .s-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+}
+
+
+/* =============================================
+   BREAKDOWN TABLE — desglose por comida
+   ============================================= */
+.breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.76rem;
+}
+
+.breakdown-table th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.breakdown-table td {
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.breakdown-table tr:last-child td {
+    border-bottom: none;
+}
+
+.breakdown-table .meal-group td:first-child {
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 0.8rem;
+}
+
+.breakdown-table .total-row td {
+    font-weight: 700;
+    color: var(--text);
+    border-top: 1px solid var(--border);
+    padding-top: 0.6rem;
+}
+
+.empty-note {
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+
+/* =============================================
+   BOTONES DE ACCION (pdf, reset, agregar)
+   ============================================= */
+.actions-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.reset-btn,
+.pdf-btn {
+    background: none;
+    border-radius: 8px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    padding: 0.5rem 1.4rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.reset-btn {
+    border: 1px solid var(--border);
+    color: var(--muted);
+}
+
+.reset-btn:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}
+
+.pdf-btn {
+    border: 1px solid var(--text-dim);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.pdf-btn:hover {
+    background: var(--text);
+    color: #000;
+    border-color: var(--text);
+}
+
+
+/* =============================================
+   MODAL — agregar alimento
+   ============================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: #181818;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 1.5rem;
+    width: 340px;
+    font-family: 'Syne', sans-serif;
+}
+
+.modal-title {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+}
+
+.modal-hint {
+    color: #666;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.modal-error {
+    display: none;
+    color: #ff6b6b;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    margin-bottom: 0.8rem;
+}
+
+.modal-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: #f0f0f0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.5rem;
+    outline: none;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modal-grid .modal-input {
+    margin-bottom: 0;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: flex-end;
+}
+
+.modal-btn-cancel {
+    background: none;
+    border: 1px solid #2a2a2a;
+    border-radius: 7px;
+    color: #666;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.modal-btn-cancel:hover {
+    border-color: #666;
+    color: #f0f0f0;
+}
+
+.modal-btn-save {
+    background: var(--accent);
+    border: none;
+    border-radius: 7px;
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.modal-btn-save:hover {
+    background: #b5db4a;
+}
+
+/* colores por macro — compartido entre modal y suggest */
+.col-cal  { color: var(--cal-color); }
+.col-prot { color: var(--prot-color); }
+.col-carb { color: var(--carb-color); }
+.col-fat  { color: var(--fat-color); }
+.col-fib  { color: var(--fib-color); }
+
+
+/* =============================================
+   ADMIN PANEL
+   ============================================= */
+#adminPanel {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 300;
+    background: #181818;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 1.2rem;
+    width: 480px;
+    max-height: 60vh;
+    overflow-y: auto;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+}
+
+.admin-header {
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-close {
+    cursor: pointer;
+    color: var(--muted);
+}
+
+.admin-empty {
+    color: var(--muted);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    color: var(--muted);
+    font-size: 0.68rem;
+    font-weight: 400;
+}
+
+.admin-table th:first-child {
+    text-align: left;
+    padding: 0.3rem 0.5rem;
+}
+
+.admin-table td {
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+.admin-table td:first-child {
+    text-align: left;
+    padding: 0.3rem 0.5rem;
+    color: var(--text);
+}
+
+.admin-footer {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.8rem;
+}
+
+.admin-footer-label {
+    color: var(--muted);
+    font-size: 0.68rem;
+    margin-bottom: 0.4rem;
+}
+
+.admin-textarea {
+    width: 100%;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.5rem;
+    height: 80px;
+    resize: none;
+}
+
+
+/* =============================================
+   CALCULADORA DE MACROS — form e inputs
+   ============================================= */
+.calc-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.calc-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.calc-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.calc-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.calc-input {
+    width: 100%;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    padding: 0.5rem 2rem 0.5rem 0.7rem;
+    outline: none;
+    transition: border-color 0.15s;
+}
+
+.calc-input:focus {
+    border-color: var(--text);
+}
+
+.calc-unit {
+    position: absolute;
+    right: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    pointer-events: none;
+}
+
+.calc-select {
+    width: 100%;
+    background: #111;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    padding: 0.5rem 0.7rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
+}
+
+.calc-select:focus {
+    border-color: var(--text);
+}
+
+.calc-error {
+    display: none;
+    color: var(--danger);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    margin-bottom: 0.6rem;
+}
+
+.calc-btn {
+    background: var(--text);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.55rem 1.8rem;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.calc-btn:hover {
+    opacity: 0.85;
+}
+
+
+/* =============================================
+   CALCULADORA DE MACROS — tarjetas resultado
+   ============================================= */
+.calc-result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.calc-result-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--macro-color, var(--border));
+}
+
+.calc-result-card.text::before {
+    background: var(--text);
+}
+
+.calc-result-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+}
+
+.calc-result-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1;
+}
+
+.calc-result-value.macro-val {
+    color: var(--macro-color, var(--text));
+}
+
+.calc-result-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+}
+
+.calc-result-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--macro-color, var(--muted));
+    margin-top: 0.15rem;
+    opacity: 0.7;
+}
+
+
+/* =============================================
+   INFO BUTTON & TOOLTIP
+   ============================================= */
+.info-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 16px;
+    height: 16px;
+    background: none;
+    border: 1px solid var(--muted);
+    border-radius: 50%;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: border-color 0.15s, color 0.15s;
+}
+
+.info-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.info-tooltip {
+    display: none;
+    position: fixed;
+    background: #222;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text);
+    line-height: 1.5;
+    width: 200px;
+    z-index: 999;
+    text-align: left;
+    pointer-events: none;
+}
+
+.info-tooltip.visible {
+    display: block;
+}
+
+
+/* =============================================
+   SUGERENCIAS — form
+   ============================================= */
+.suggest-form {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+}
+
+.suggest-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.suggest-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 0 0.8rem;
+}
+
+.suggest-divider::before,
+.suggest-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.suggest-divider span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+}
+
+.required {
+    color: var(--accent);
+}

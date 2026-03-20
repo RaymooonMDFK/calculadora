@@ -1,6 +1,7 @@
 function sendSuggestion() {
     const nombre = document.getElementById("sNombre").value.trim();
     const marca = document.getElementById("sMarca").value.trim();
+    const mensaje = document.getElementById("sMensaje").value.trim();
     const cal = document.getElementById("sCal").value.trim();
     const prot = document.getElementById("sProt").value.trim();
     const carb = document.getElementById("sCarb").value.trim();
@@ -20,7 +21,7 @@ function sendSuggestion() {
     // construir cuerpo del correo
     let body = `Alimento: ${nombre}\nMarca / versión: ${marca}\n`;
 
-    const tieneDeclaracion = cal || prot || carb || gras || fib;
+    const tieneDeclaracion = cal || prot || carb || gras || fib || Mensaje;
     if (tieneDeclaracion) {
         body += `\n--- Declaración nutrimental (por 100g) ---\n`;
         if (cal) body += `Calorías:      ${cal} kcal\n`;
@@ -28,6 +29,7 @@ function sendSuggestion() {
         if (carb) body += `Carbohidratos: ${carb} g\n`;
         if (gras) body += `Grasas:        ${gras} g\n`;
         if (fib) body += `Fibra:         ${fib} g\n`;
+        if (mensaje) body += `Mensaje: ${mensaje} g\n`;
     } else {
         body += `\nSin declaración nutrimental — revisar manualmente.\n`;
     }

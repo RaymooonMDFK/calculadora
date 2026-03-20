@@ -31,6 +31,19 @@ function renderMealRows(mealId) {
     const body = document.getElementById(`body-${mealId}`);
     body.innerHTML = "";
     state[mealId].forEach((row, i) => {
+        const porcion = row.food && DB[row.food] ? DB[row.food][5] : null;
+        const hintHtml = porcion
+            ? `<div class="porcion-hint" id="hint-${mealId}-${i}">
+                   1 ${porcion.unidad} = ${porcion.gramos}g
+               </div>`
+            : `<div class="porcion-hint" id="hint-${mealId}-${i}" style="display:none"></div>`;
+
+        const toggleHtml = porcion
+            ? `<button class="toggle-porcion" id="toggle-${mealId}-${i}" 
+                   onclick="toggleModo('${mealId}',${i})"
+                   title="Cambiar entre gramos y porciones">g</button>`
+            : `<div></div>`;
+
         const rowEl = document.createElement("div");
         rowEl.className = "food-row";
         rowEl.innerHTML = `
@@ -48,15 +61,18 @@ function renderMealRows(mealId) {
             </div>
             <input
                 class="grams-input"
+                id="gramos-${mealId}-${i}"
                 type="number"
                 min="0"
                 placeholder="g"
                 value="${row.grams}"
                 oninput="onGramsInput('${mealId}',${i},this.value)"
             />
+            ${toggleHtml}
             <button class="remove-btn" onclick="removeRow('${mealId}',${i})" title="Eliminar">×</button>
         `;
         body.appendChild(rowEl);
+        body.appendChild(document.createRange().createContextualFragment(hintHtml));
     });
 
     const addBtn = document.createElement("button");

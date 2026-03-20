@@ -1,7 +1,7 @@
 function calcRow(food, grams) {
     const g = parseFloat(grams) || 0;
     if (!food || !DB[food] || g === 0) return [0, 0, 0, 0, 0];
-    return DB[food].map(v => Math.round((v * g / 100) * 10) / 10);
+    return DB[food].slice(0, 5).map(v => Math.round((v * g / 100) * 10) / 10);
 }
 
 function calcMeal(mealId) {

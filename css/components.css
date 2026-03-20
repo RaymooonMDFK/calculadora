@@ -79,10 +79,10 @@
    ============================================= */
 .food-row {
     display: grid;
-    grid-template-columns: 1fr 80px 28px;
+    grid-template-columns: 1fr 70px 28px 28px;
     gap: 0.4rem;
     align-items: center;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.2rem;
 }
 
 .food-input-wrap {
@@ -505,6 +505,38 @@
 .col-fat  { color: var(--fat-color); }
 .col-fib  { color: var(--fib-color); }
 
+.porcion-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    padding: 0 0.2rem 0.3rem;
+    margin-top: -0.2rem;
+    grid-column: 1 / -1;
+}
+
+.toggle-porcion {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    cursor: pointer;
+    padding: 0;
+    height: 100%;
+    transition: all 0.15s;
+}
+
+.toggle-porcion:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.toggle-activo {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: #1a2a0a;
+}
 
 /* =============================================
    ADMIN PANEL

@@ -22,6 +22,7 @@ function sendSuggestion() {
     let body = `Alimento: ${nombre}\nMarca / versión: ${marca}\n`;
 
     const tieneDeclaracion = cal || prot || carb || gras || fib || mensaje;
+    if (mensaje) body += `Mensaje: ${mensaje}\n`;
     if (tieneDeclaracion) {
         body += `\n--- Declaración nutrimental (por 100g) ---\n`;
         if (cal) body += `Calorías:      ${cal} kcal\n`;
@@ -29,7 +30,6 @@ function sendSuggestion() {
         if (carb) body += `Carbohidratos: ${carb} g\n`;
         if (gras) body += `Grasas:        ${gras} g\n`;
         if (fib) body += `Fibra:         ${fib} g\n`;
-        if (mensaje) body += `Mensaje: ${mensaje} g\n`;
     } else {
         body += `\nSin declaración nutrimental — revisar manualmente.\n`;
     }

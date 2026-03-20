@@ -3,7 +3,8 @@
 //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
 // ─────────────────────────────────────────────
 const DB = {
-// VERDURAS 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
+    // VERDURAS 
     "aguacate": [160, 2.0, 8.5, 14.7, 6.7],
     "ajo": [149, 6.4, 33.1, 0.5, 2.1],
     "papa cocida": [87, 1.9, 20.1, 0.1, 1.8],
@@ -31,6 +32,7 @@ const DB = {
     "coliflor": [25, 1.9, 5.0, 0.3, 2.0],
     "ejotes": [31, 1.8, 7.0, 0.2, 2.7],
 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // FRUTAS 
     "toronja": [42, 0.8, 10.7, 0.1, 1.6],
     "tuna": [41, 0.7, 9.6, 0.5, 3.6],
@@ -65,6 +67,7 @@ const DB = {
     "uva verde sin semilla": [67, 0.6, 17.2, 0.4, 0.9],
     "frutos rojos": [50, 1.0, 12.0, 0.3, 4.5],
 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // CEREALES Y SNACKS 
     "pan integral": [247, 13.0, 41.0, 3.4, 7.0],
     "quinoa cruda": [368, 14.1, 64.2, 6.1, 7.0],
@@ -88,6 +91,7 @@ const DB = {
     "tortilla de nopal": [150, 4.0, 30.0, 1.5, 10.0],
     "tostadas": [450, 7.0, 65.0, 18.0, 8.0],
 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // GRASAS Y SEMILLAS 
     "almendras": [579, 21.2, 21.7, 49.9, 12.5],
     "cacahuates": [567, 25.8, 16.1, 49.2, 8.5],
@@ -98,6 +102,7 @@ const DB = {
     "nueces": [654, 15.2, 13.7, 65.2, 6.7],
     "pistaches": [562, 20.2, 27.2, 45.3, 10.6],
 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // LEGUMINOSAS Y PROTEÍNAS 
     "frijoles negros": [341, 21.6, 62.4, 1.4, 15.5],
     "frijoles bayos": [347, 21.4, 63.3, 1.2, 15.0],
@@ -129,6 +134,7 @@ const DB = {
     "rib eye": [290, 24.0, 0.0, 22.0, 0.0],
     "chicharron": [510, 64, 0, 28, 0],
 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // LÁCTEOS Y BEBIDAS
     "leche entera": [61, 3.2, 4.8, 3.3, 0.0],
     "leche descremada": [34, 3.4, 5.0, 0.1, 0.0],
@@ -136,6 +142,7 @@ const DB = {
     "leche light": [42, 3.4, 5.0, 0.9, 0.0],
     "leche semi descremada": [49, 3.3, 4.9, 1.8, 0.0],
     "leche de almendra": [13, 0.4, 0.1, 1.1, 0.2],
+    "leche lala 100": [53, 5.4, 3.4, 2, 0],
     "yogurt natural": [63, 3.5, 5.0, 3.3, 0.0],
     "yogurt griego": [59, 10.0, 3.6, 0.4, 0.0],
     "café negro": [2, 0.1, 0.0, 0.0, 0.0],
@@ -146,6 +153,7 @@ const DB = {
     "miel de abeja": [304, 0.3, 82.4, 0.0, 0.0],
     "gelatina light": [7, 1.6, 0.0, 0.0, 0.0],
 
+    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // CHUCHERIAS
     "crossantin": [423, 4.8, 43.5, 25.5, 1.77],
     "monster blanco": [4.28, 0.0, 0.9, 0.0, 0.0],

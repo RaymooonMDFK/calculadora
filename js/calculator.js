@@ -1,19 +1,13 @@
 const ACTIVITY_FACTORS = {
     sedentario: 1.2,
-    ligero: 1.375,
-    moderado: 1.55,
-    activo: 1.725,
+    ligero:     1.375,
+    moderado:   1.55,
+    activo:     1.725,
     muy_activo: 1.9,
 };
 
-const MACROS_PCT = {
-    prot: 0.35,
-    carbs: 0.40,
-    grasas: 0.25,
-};
-
 const AJUSTE_KCAL = {
-    perder_grasa: -400,
+    perder_grasa:  -400,
     ganar_musculo: +250,
     mantenimiento: 0,
 };
@@ -27,32 +21,45 @@ function calcTDEE(tmb, actividad) {
     return Math.round(tmb * ACTIVITY_FACTORS[actividad]);
 }
 
-function calcMacros(tdee, objetivo) {
+function calcMacros(tdee, objetivo, peso) {
     const kcalObjetivo = tdee + AJUSTE_KCAL[objetivo];
 
-    const prot = Math.round((kcalObjetivo * MACROS_PCT.prot) / 4);
-    const carbs = Math.round((kcalObjetivo * MACROS_PCT.carbs) / 4);
-    const grasas = Math.round((kcalObjetivo * MACROS_PCT.grasas) / 9);
+    // gramos fijos por kilo de peso corporal
+    const prot   = Math.round(peso * 2);   // 2g por kg
+    const grasas = Math.round(peso * 1);   // 1g por kg
+
+    // carbs toman las calorías restantes después de prot y grasas
+    const kcalProt   = prot   * 4;
+    const kcalGrasas = grasas * 9;
+    const kcalCarbs  = kcalObjetivo - kcalProt - kcalGrasas;
+    const carbs      = Math.round(kcalCarbs / 4);
+
+    // porcentajes reales según lo que resultó
+    const pctProt   = Math.round((kcalProt   / kcalObjetivo) * 100);
+    const pctGrasas = Math.round((kcalGrasas / kcalObjetivo) * 100);
+    const pctCarbs  = 100 - pctProt - pctGrasas;
 
     return {
         kcal_objetivo: kcalObjetivo,
         prot,
         carbs,
         grasas,
+        pctProt,
+        pctCarbs,
+        pctGrasas,
     };
 }
 
 function toggleInfo(id, btnEl) {
     const tooltip = document.getElementById(id);
-    const isOpen = tooltip.classList.contains("visible");
+    const isOpen  = tooltip.classList.contains("visible");
 
     document.querySelectorAll(".info-tooltip").forEach(t => t.classList.remove("visible"));
     if (isOpen) return;
 
-    // posicionar encima del botón
     const rect = btnEl.getBoundingClientRect();
-    tooltip.style.left = (rect.left + rect.width / 2 - 100) + "px";
-    tooltip.style.top = (rect.top - 8) + "px";
+    tooltip.style.left      = (rect.left + rect.width / 2 - 100) + "px";
+    tooltip.style.top       = (rect.top - 8) + "px";
     tooltip.style.transform = "translateY(-100%)";
     tooltip.classList.add("visible");
 }
@@ -64,12 +71,12 @@ document.addEventListener("click", e => {
 });
 
 function runCalculator() {
-    const peso = parseFloat(document.getElementById("cPeso").value);
-    const altura = parseFloat(document.getElementById("cAltura").value);
-    const edad = parseFloat(document.getElementById("cEdad").value);
-    const sexo = document.getElementById("cSexo").value;
+    const peso     = parseFloat(document.getElementById("cPeso").value);
+    const altura   = parseFloat(document.getElementById("cAltura").value);
+    const edad     = parseFloat(document.getElementById("cEdad").value);
+    const sexo     = document.getElementById("cSexo").value;
     const actividad = document.getElementById("cActividad").value;
-    const objetivo = document.getElementById("cObjetivo").value;
+    const objetivo  = document.getElementById("cObjetivo").value;
 
     const errEl = document.getElementById("calcError");
 
@@ -81,22 +88,21 @@ function runCalculator() {
 
     errEl.style.display = "none";
 
-    const tmb = calcMifflin(peso, altura, edad, sexo);
-    const tdee = calcTDEE(tmb, actividad);
-    const macros = calcMacros(tdee, objetivo);
+    const tmb    = calcMifflin(peso, altura, edad, sexo);
+    const tdee   = calcTDEE(tmb, actividad);
+    const macros = calcMacros(tdee, objetivo, peso);
 
-    document.getElementById("resTMB").textContent = Math.round(tmb);
-    document.getElementById("resTDEE").textContent = tdee;
-    document.getElementById("resKcal").textContent = macros.kcal_objetivo;
-    document.getElementById("resCarbs").textContent = `${macros.carbs}g`;
-    document.getElementById("resProt").textContent = `${macros.prot}g`;
+    document.getElementById("resTMB").textContent    = Math.round(tmb);
+    document.getElementById("resTDEE").textContent   = tdee;
+    document.getElementById("resKcal").textContent   = macros.kcal_objetivo;
+    document.getElementById("resCarbs").textContent  = `${macros.carbs}g`;
+    document.getElementById("resProt").textContent   = `${macros.prot}g`;
     document.getElementById("resGrasas").textContent = `${macros.grasas}g`;
 
-    // porcentajes fijos, siempre los mismos
-    document.getElementById("resPctCarbs").textContent = "40%";
-    document.getElementById("resPctProt").textContent = "35%";
-    document.getElementById("resPctGrasas").textContent = "25%";
+    // porcentajes calculados dinámicamente según peso
+    document.getElementById("resPctCarbs").textContent  = `${macros.pctCarbs}%`;
+    document.getElementById("resPctProt").textContent   = `${macros.pctProt}%`;
+    document.getElementById("resPctGrasas").textContent = `${macros.pctGrasas}%`;
 
     document.getElementById("calcResults").style.display = "grid";
 }
-

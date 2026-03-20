@@ -21,7 +21,7 @@ function sendSuggestion() {
     // construir cuerpo del correo
     let body = `Alimento: ${nombre}\nMarca / versión: ${marca}\n`;
 
-    const tieneDeclaracion = cal || prot || carb || gras || fib || Mensaje;
+    const tieneDeclaracion = cal || prot || carb || gras || fib || mensaje;
     if (tieneDeclaracion) {
         body += `\n--- Declaración nutrimental (por 100g) ---\n`;
         if (cal) body += `Calorías:      ${cal} kcal\n`;

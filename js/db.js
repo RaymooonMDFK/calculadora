@@ -66,6 +66,7 @@ const DB = {
     "uva verde con semilla": [69, 0.7, 18.1, 0.2, 0.9, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "uva verde sin semilla": [67, 0.6, 17.2, 0.4, 0.9, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "frutos rojos": [50, 1.0, 12.0, 0.3, 4.5, { cantidad: 1, unidad: "taza", gramos: 250 }],
+    
 
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // CEREALES Y SNACKS 
@@ -166,6 +167,7 @@ const DB = {
     "salsa cátsup": [97, 1.3, 23.0, 0.1, 0.3, null],
     "miel de abeja": [304, 0.3, 82.4, 0.0, 0.0, null],
     "gelatina light": [7, 1.6, 0.0, 0.0, 0.0, null],
+    "cacahuates japoneses oxxo": [562, 22.2, 6.6, 49.7, 7.3, {cantidad: 1, unidad: "porcion", gramos: 30}],
 
 };
 

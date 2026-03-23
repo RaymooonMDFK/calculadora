@@ -12,6 +12,14 @@ const AJUSTE_KCAL = {
     mantenimiento: 0,
 };
 
+const GRAMOS_POR_KILO = {
+    sedentario: {prot: 1.5, grasas: 0.7},
+    ligero: {prot: 1.8, grasas: 0.8},
+    moderado: {prot: 2, grasas: 1},
+    activo: {prot: 2, grasas: 1},
+    muy_activo: {prot: 2, grasas: 1},
+};
+
 function calcMifflin(peso, altura, edad, sexo) {
     const base = (10 * peso) + (6.25 * altura) - (5 * edad);
     return sexo === "hombre" ? base + 5 : base - 161;
@@ -21,33 +29,23 @@ function calcTDEE(tmb, actividad) {
     return Math.round(tmb * ACTIVITY_FACTORS[actividad]);
 }
 
-function calcMacros(tdee, objetivo, peso) {
+function calcMacros(tdee, objetivo, peso, actividad) {
     const kcalObjetivo = tdee + AJUSTE_KCAL[objetivo];
 
-    // gramos fijos por kilo de peso corporal
-    const prot   = Math.round(peso * 2);   // 2g por kg
-    const grasas = Math.round(peso * 1);   // 1g por kg
+    const factores = GRAMOS_POR_KILO[actividad];
+    const prot     = Math.round(peso * factores.prot);
+    const grasas   = Math.round(peso * factores.grasas);
 
-    // carbs toman las calorías restantes después de prot y grasas
     const kcalProt   = prot   * 4;
     const kcalGrasas = grasas * 9;
     const kcalCarbs  = kcalObjetivo - kcalProt - kcalGrasas;
     const carbs      = Math.round(kcalCarbs / 4);
 
-    // porcentajes reales según lo que resultó
     const pctProt   = Math.round((kcalProt   / kcalObjetivo) * 100);
     const pctGrasas = Math.round((kcalGrasas / kcalObjetivo) * 100);
     const pctCarbs  = 100 - pctProt - pctGrasas;
 
-    return {
-        kcal_objetivo: kcalObjetivo,
-        prot,
-        carbs,
-        grasas,
-        pctProt,
-        pctCarbs,
-        pctGrasas,
-    };
+    return { kcal_objetivo: kcalObjetivo, prot, carbs, grasas, pctProt, pctCarbs, pctGrasas };
 }
 
 function toggleInfo(id, btnEl) {
@@ -90,7 +88,7 @@ function runCalculator() {
 
     const tmb    = calcMifflin(peso, altura, edad, sexo);
     const tdee   = calcTDEE(tmb, actividad);
-    const macros = calcMacros(tdee, objetivo, peso);
+    const macros = calcMacros(tdee, objetivo, peso, actividad);
 
     document.getElementById("resTMB").textContent    = Math.round(tmb);
     document.getElementById("resTDEE").textContent   = tdee;

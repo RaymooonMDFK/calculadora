@@ -94,29 +94,23 @@ function onFoodKeydown(e, mealId, i) {
 }
 
 function selectFood(mealId, i, name) {
-    state[mealId][i].food = name;
-    const wrap  = document.getElementById(`wrap-${mealId}-${i}`);
-    const input = wrap.querySelector(".food-input");
-    if (input) input.value = name;
-    const list = wrap.querySelector(".autocomplete-list");
-    if (list) list.remove();
+    state[mealId][i].food  = name;
+    state[mealId][i].grams = state[mealId][i].grams || "";
 
-    // si tiene porción, autocompleta con el peso de 1 porción
+    // si tiene porción, precarga el peso de 1 porción
     const porcion = DB[name] ? DB[name][5] : null;
-    const hintEl  = document.getElementById(`hint-${mealId}-${i}`);
-    const inputGramos = document.getElementById(`gramos-${mealId}-${i}`);
+    if (porcion && !state[mealId][i].grams) {
+        state[mealId][i].grams = porcion.gramos;
+    }
 
-    if (porcion) {
-        if (hintEl) {
-            hintEl.textContent = `1 ${porcion.unidad} = ${porcion.gramos}g`;
-            hintEl.style.display = "block";
-        }
-        if (inputGramos && !state[mealId][i].grams) {
-            inputGramos.value      = porcion.gramos;
-            state[mealId][i].grams = porcion.gramos;
-        }
-    } else {
-        if (hintEl) hintEl.style.display = "none";
+    // redibujar la fila completa para que aparezca el toggle
+    renderMealRows(mealId);
+
+    // mover foco al input de gramos
+    const inputGramos = document.getElementById(`gramos-${mealId}-${i}`);
+    if (inputGramos) {
+        inputGramos.focus();
+        inputGramos.select();
     }
 
     renderMealMacros(mealId);

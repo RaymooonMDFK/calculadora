@@ -30,7 +30,6 @@ function resetAll() {
     render();
 }
 
-// modo porcion por fila: { "mealId-i": "g" | "porcion" }
 const modoFila = {};
 
 function toggleModo(mealId, i) {
@@ -72,7 +71,6 @@ function toggleModo(mealId, i) {
     renderSummary();
 }
 
-// actualiza onGramsInput para respetar el modo
 function onGramsInput(mealId, i, value) {
     const key = `${mealId}-${i}`;
     const food = state[mealId][i].food;

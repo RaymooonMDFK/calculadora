@@ -8,11 +8,12 @@
     <link rel="icon" href="img/logo-calculadora.png">
 
     <!-- css -->
-    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap">
+
 
     <!-- scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -25,6 +26,7 @@
     <header>
         <h1>CALCULADORA DE DIETA</h1>
         <p>ingresa alimentos y gramos — los macros se calculan solos</p>
+
     </header>
 
     <div class="meals-grid" id="mealsGrid"></div>
@@ -251,6 +253,18 @@
         </div>
     </template>
 
+    <div class="info-tooltip" id="infoTMB">
+        Tasa Metabólica Basal — calorías que quema tu cuerpo en reposo absoluto, solo para mantenerse vivo.
+    </div>
+    <div class="info-tooltip" id="infoTDEE">
+        Total Daily Energy Expenditure — calorías que quemas en un día real incluyendo tu actividad. Comer esto mantiene
+        tu peso.
+    </div>
+    <div class="info-tooltip" id="infoObj">
+        Calorías ajustadas a tu objetivo. Déficit de ~400 kcal para perder grasa, superávit de ~250 kcal para ganar
+        músculo.
+    </div>
+
     <script src="js/db.js"></script>
     <script src="js/state.js"></script>
     <script src="js/calculations.js"></script>
@@ -264,17 +278,39 @@
     <script src="js/suggest.js"></script>
     <script src="js/main.js"></script>
 
-</body>
+    <footer>
+        <div class="footer-logo">
+            <img src="img/logo-calculadora.png" alt="Calculadora de Dieta">
+        </div>
 
-<div class="info-tooltip" id="infoTMB">
-    Tasa Metabólica Basal — calorías que quema tu cuerpo en reposo absoluto, solo para mantenerse vivo.
-</div>
-<div class="info-tooltip" id="infoTDEE">
-    Total Daily Energy Expenditure — calorías que quemas en un día real incluyendo tu actividad. Comer esto mantiene tu
-    peso.
-</div>
-<div class="info-tooltip" id="infoObj">
-    Calorías ajustadas a tu objetivo. Déficit de ~400 kcal para perder grasa, superávit de ~250 kcal para ganar músculo.
-</div>
+        <div class="footer-columnas">
+            <nav class="footer-col" aria-label="Columna 1">
+                <h3 class="footer-col-titulo">Contenido</h3>
+                <ul>
+                    <li><a href="preguntasFrecuentes.html">Preguntas frecuentes</a></li>
+                    <li><a href="tutorial.html">Tutorial</a></li>
+                    <li><a href="sugerencias.html">Sugerencias</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Columna 2">
+                <h3 class="footer-col-titulo">Redes sociales</h3>
+                <ul>
+                    <li><a href="mailto:copypastencapa8@gmail.com">Correo Electronico</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Columna 3">
+                <h3 class="footer-col-titulo">Nosotros</h3>
+                <ul>
+                    <li><a href="quienesSomos.html">¿Quienes somos?</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright 2026 © Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
 
 </html>

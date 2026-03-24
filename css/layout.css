@@ -1,3 +1,23 @@
+:root {
+    --bg: #0f0f0f;
+    --surface: #181818;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --muted: #666;
+    --danger: #ff6b6b;
+    --accent: #c8f060;
+    --cal-color: #ffd166;
+    --prot-color: #c8f060;
+    --carb-color: #74b9ff;
+    --fat-color: #fd79a8;
+    --fib-color: #a29bfe;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 /* =============================================
    BASE — body y tipografía global
    ============================================= */
@@ -6,7 +26,7 @@ body {
     color: var(--text);
     font-family: 'Syne', sans-serif;
     min-height: 100vh;
-    padding: 2rem 1rem 4rem;
+    padding-top: 50px;
 }
 
 
@@ -102,4 +122,89 @@ header p {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0.8rem;
     margin-bottom: 0.8rem;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+
+footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding: 3rem 2rem 0;
+}
+
+/* logo y nombre centrados */
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.footer-nombre {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    color: var(--text);
+}
+
+/* columnas */
+.footer-columnas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+}
+
+.footer-col h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-col a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.footer-col a:hover {
+    color: var(--text);
+}
+
+/* copyright */
+.footer-copyright {
+    border-top: 1px solid var(--muted);
+    padding: 1rem;
+    text-align: center;
+    background: #111;
+    margin: 0 -2rem;
+}
+
+.footer-copyright p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
 }

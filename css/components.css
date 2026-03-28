@@ -227,11 +227,25 @@
     height: 3px;
 }
 
-.summary-card.cal::before  { background: var(--cal-color); }
-.summary-card.prot::before { background: var(--prot-color); }
-.summary-card.carb::before { background: var(--carb-color); }
-.summary-card.fat::before  { background: var(--fat-color); }
-.summary-card.fib::before  { background: var(--fib-color); }
+.summary-card.cal::before {
+    background: var(--cal-color);
+}
+
+.summary-card.prot::before {
+    background: var(--prot-color);
+}
+
+.summary-card.carb::before {
+    background: var(--carb-color);
+}
+
+.summary-card.fat::before {
+    background: var(--fat-color);
+}
+
+.summary-card.fib::before {
+    background: var(--fib-color);
+}
 
 .summary-card .s-label {
     font-size: 0.68rem;
@@ -248,11 +262,25 @@
     line-height: 1;
 }
 
-.summary-card.cal  .s-value { color: var(--cal-color); }
-.summary-card.prot .s-value { color: var(--prot-color); }
-.summary-card.carb .s-value { color: var(--carb-color); }
-.summary-card.fat  .s-value { color: var(--fat-color); }
-.summary-card.fib  .s-value { color: var(--fib-color); }
+.summary-card.cal .s-value {
+    color: var(--cal-color);
+}
+
+.summary-card.prot .s-value {
+    color: var(--prot-color);
+}
+
+.summary-card.carb .s-value {
+    color: var(--carb-color);
+}
+
+.summary-card.fat .s-value {
+    color: var(--fat-color);
+}
+
+.summary-card.fib .s-value {
+    color: var(--fib-color);
+}
 
 .summary-card .s-unit {
     font-family: 'DM Mono', monospace;
@@ -473,11 +501,25 @@
 }
 
 /* colores por macro — compartido entre modal y suggest */
-.col-cal  { color: var(--cal-color); }
-.col-prot { color: var(--prot-color); }
-.col-carb { color: var(--carb-color); }
-.col-fat  { color: var(--fat-color); }
-.col-fib  { color: var(--fib-color); }
+.col-cal {
+    color: var(--cal-color);
+}
+
+.col-prot {
+    color: var(--prot-color);
+}
+
+.col-carb {
+    color: var(--carb-color);
+}
+
+.col-fat {
+    color: var(--fat-color);
+}
+
+.col-fib {
+    color: var(--fib-color);
+}
 
 .porcion-hint {
     font-family: 'DM Mono', monospace;
@@ -856,4 +898,33 @@
 
 .required {
     color: var(--accent);
+}
+
+/* =============================================
+   CONTACTO
+   ============================================= */
+.seccion-contacto {
+    max-width: 600px;
+    margin: 2rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.formulario-contacto {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contacto-textarea {
+    height: 120px;
+    resize: vertical;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.7rem;
+    line-height: 1.5;
 }

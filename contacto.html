@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Dieta</title>
+    <link rel="icon" href="img/logo-calculadora.png">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap">
+
+    <!-- JS -->
+    <script src="js/contact.js"></script>
+
+
+    <!-- imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Contacto</h1>
+        <p>¿Quieres ponerte en contacto conmigo?, completa el formulario y me comunicare contigo lo antes posible</p>
+    </header>
+
+    <main>
+        <section class="seccion-contacto" aria-label="Formulario de contacto">
+            <header class="summary-header">
+                <h2 class="summary-title">Contacto</h2>
+            </header>
+
+            <form class="formulario-contacto" onsubmit="return false">
+                <div class="calc-field">
+                    <label class="calc-label" for="cNombre">Nombre</label>
+                    <input id="cNombre" class="calc-input" type="text" placeholder="Juanito Alacachofa">
+                </div>
+
+                <div class="calc-field">
+                    <label class="calc-label" for="cCorreo">Correo <span class="required">*</span></label>
+                    <input id="cCorreo" class="calc-input" type="email" placeholder="juanitoprogamer@gmail.com"
+                        required>
+                </div>
+
+                <div class="calc-field">
+                    <label class="calc-label" for="cAsunto">Asunto</label>
+                    <input id="cAsunto" class="calc-input" type="text" placeholder="¿De qué quieres hablar?">
+                </div>
+
+                <div class="calc-field">
+                    <label class="calc-label" for="cMensaje">Mensaje <span class="required">*</span></label>
+                    <textarea id="cMensaje" class="calc-input contacto-textarea"
+                        placeholder="Escribe tu mensaje aquí..." required></textarea>
+                </div>
+
+                <p id="contactoError" class="calc-error" role="alert"></p>
+                <button class="calc-btn" onclick="sendContact()">Enviar mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="img/logo-calculadora.png" alt="Calculadora de Dieta">
+            <!--<h3>Calculadora de dieta</h3>-->
+        </div>
+
+        <div class="footer-columnas">
+            <nav class="footer-col" aria-label="Columna 1">
+                <h3 class="footer-col-titulo">Contenido</h3>
+                <ul>
+                    <li><a href="preguntasFrecuentes.html">Preguntas frecuentes</a></li>
+                    <li><a href="tutorial.html">Tutorial</a></li>
+                    <li><a href="sugerencias.html">Sugerencias</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Columna 2">
+                <h3 class="footer-col-titulo">Nosotros</h3>
+                <ul>
+                    <li><a href="quienesSomos.html">¿Quienes somos?</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-copyright">
+            <p>Copyright 2026 © Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -91,17 +91,18 @@ const DB = {
     "tortilla de harina": [310, 8.0, 50.0, 9.0, 2.0, { cantidad: 1, unidad: "pieza", gramos: 30 }],
     "tortilla de nopal": [150, 4.0, 30.0, 1.5, 10.0, { cantidad: 1, unidad: "pieza", gramos: 30 }],
     "tostadas sanissimo": [380, 10.5, 85.0, 1.0, 3.0, { cantidad: 1, unidad: "pieza", gramos: 30 }],
+    "pasta cruda": [378, 12, 78, 2, 2, { cantidad: 2, unidad: "porcion", gramos: 50 }],
 
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // GRASAS Y SEMILLAS 
-    "almendras": [579, 21.2, 21.7, 49.9, 12.5, { cantidad: 1, unidad: "taza", gramos: 250 }],
-    "cacahuates": [567, 25.8, 16.1, 49.2, 8.5, { cantidad: 1, unidad: "taza", gramos: 250 }],
-    "nuez pecana": [691, 9.2, 13.9, 72.0, 9.6, { cantidad: 1, unidad: "taza", gramos: 250 }],
+    "almendras": [579, 21.2, 21.7, 49.9, 12.5, { cantidad: 1, unidad: "porcion", gramos: 30 }],
+    "cacahuates": [567, 25.8, 16.1, 49.2, 8.5, { cantidad: 1, unidad: "porcion", gramos: 30 }],
+    "nuez pecana": [691, 9.2, 13.9, 72.0, 9.6, { cantidad: 1, unidad: "porcion", gramos: 30 }],
     "mantequilla de maní": [588, 25.0, 20.0, 50.0, 6.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
     "aceite de oliva": [884, 0.0, 0.0, 100.0, 0.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
     "mayonesa": [680, 1.0, 1.0, 75.0, 0.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
-    "nueces": [654, 15.2, 13.7, 65.2, 6.7, { cantidad: 1, unidad: "taza", gramos: 250 }],
-    "pistaches": [562, 20.2, 27.2, 45.3, 10.6, { cantidad: 1, unidad: "taza", gramos: 250 }],
+    "nueces": [654, 15.2, 13.7, 65.2, 6.7, { cantidad: 1, unidad: "porcion", gramos: 30 }],
+    "pistaches": [562, 20.2, 27.2, 45.3, 10.6, { cantidad: 1, unidad: "porcion", gramos: 30 }],
 
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // LEGUMINOSAS Y PROTEÍNAS 
@@ -144,10 +145,12 @@ const DB = {
     "leche de almendra": [13, 0.4, 0.1, 1.1, 0.2, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "leche lala 100": [53, 5.4, 3.4, 2, 0, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "yogurt natural": [63, 3.5, 5.0, 3.3, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
-    "yogurt griego": [59, 10.0, 3.6, 0.4, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "café negro": [2, 0.1, 0.0, 0.0, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "tés calientes": [1, 0.0, 0.2, 0.0, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "cerveza": [43, 0.5, 3.6, 0.0, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
+    "leche silk": [61, 5.5, 4.4, 2.4, 0.4, { cantidad: 1, unidad: "taza", gramos: 300 }],
+    "yogurt griego LALA": [83, 8.2, 7.7, 2.1, 0.0, { cantidad: 1, unidad: "porcion", gramos: 120 }],
+    "yogurt griego frutos rojos": [78, 7.1, 8.3, 1.8, 0.0, { cantidad: 1, unidad: "porcion", gramos: 120 }],
 
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // CHUCHERIAS
@@ -168,6 +171,8 @@ const DB = {
     "miel de abeja": [304, 0.3, 82.4, 0.0, 0.0, null],
     "gelatina light": [7, 1.6, 0.0, 0.0, 0.0, null],
     "cacahuates japoneses oxxo": [562, 22.2, 6.6, 49.7, 7.3, {cantidad: 1, unidad: "porcion", gramos: 30}],
+    "barrita de proteina": [458, 25, 24.5, 28.9, 14.6, {cantidad: 1, unidad: "pieza", gramos: 40}],
+
 
 };
 

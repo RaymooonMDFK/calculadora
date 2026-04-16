@@ -13,11 +13,11 @@ const AJUSTE_KCAL = {
 };
 
 const GRAMOS_POR_KILO = {
-    sedentario: {prot: 1.5, grasas: 0.7},
-    ligero: {prot: 1.8, grasas: 0.8},
-    moderado: {prot: 2, grasas: 1},
+    sedentario: {prot: 1.3, grasas: 0.7},
+    ligero: {prot: 1.5, grasas: 0.8},
+    moderado: {prot: 1.5, grasas: 1},
     activo: {prot: 2, grasas: 1},
-    muy_activo: {prot: 2, grasas: 1},
+    muy_activo: {prot: 2, grasas: 1.2},
 };
 
 function calcMifflin(peso, altura, edad, sexo) {

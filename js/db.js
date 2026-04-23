@@ -105,6 +105,9 @@ const DB = {
     "pistaches": [562, 20.2, 27.2, 45.3, 10.6, { cantidad: 1, unidad: "porcion", gramos: 30 }],
     "manteca de cerdo": [900, 0.0, 0.0, 100.0, 0.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
     "especias": [0, 0.0, 0.0, 0.0, 0.0, null],
+    "mantequilla": [717, 0.9, 0.1, 81.1, 0.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
+    "queso americano": [250, 20.0, 2.0, 30.0, 0.0, { cantidad: 1, unidad: "rebanada", gramos: 20 }],
+    "queso chihuahua": [350, 25.0, 1.0, 28.0, 0.0, { cantidad: 1, unidad: "rebanada", gramos: 20 }],
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // LEGUMINOSAS Y PROTEÍNAS 
     "frijoles negros": [341, 21.6, 62.4, 1.4, 15.5, { cantidad: 1, unidad: "taza", gramos: 250 }],
@@ -175,6 +178,11 @@ const DB = {
     "cacahuates japoneses oxxo": [562, 22.2, 6.6, 49.7, 7.3, {cantidad: 1, unidad: "porcion", gramos: 30}],
     "barrita de proteina": [458, 25, 24.5, 28.9, 14.6, {cantidad: 1, unidad: "pieza", gramos: 40}],
 
+    // formato: [kcal, proteína, carbohidratos, grasas, fibra]
+    // RECETAS
+    "pierna": [317, 31.7, 9.2, 14.4, 3, null],
+    "torta de pierna doña pelos": [1300, 64, 121, 60, 9, { cantidad: 1, unidad: "pieza", gramos: 100 }],
+    "": [0, 0, 0, 0, 0, null],
 
 };
 

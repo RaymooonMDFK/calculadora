@@ -24,6 +24,7 @@ const DB = {
     "brocoli": [34, 2.8, 6.6, 0.4, 2.6, null],
     "calabaza": [17, 1.2, 3.4, 0.2, 1.1, null],
     "cebolla": [40, 1.1, 9.3, 0.1, 1.7, null],
+    "cebolla morada": [40, 1.1, 9.3, 0.1, 1.7, null],
     "champiñon": [22, 3.1, 3.3, 0.3, 1.0, null],
     "chile jalapeño": [29, 0.9, 6.5, 0.4, 2.8, null],
     "chayote": [19, 0.8, 4.5, 0.1, 1.7, null],
@@ -31,9 +32,6 @@ const DB = {
     "chile poblano": [20, 0.9, 4.7, 0.2, 1.8, null],
     "coliflor": [25, 1.9, 5.0, 0.3, 2.0, null],
     "ejotes": [31, 1.8, 7.0, 0.2, 2.7, null],
-
-    //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
-    // FRUTAS 
     "toronja": [42, 0.8, 10.7, 0.1, 1.6, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "tuna": [41, 0.7, 9.6, 0.5, 3.6, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "mamey": [124, 1.5, 32.1, 0.5, 3.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
@@ -66,6 +64,8 @@ const DB = {
     "uva verde con semilla": [69, 0.7, 18.1, 0.2, 0.9, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "uva verde sin semilla": [67, 0.6, 17.2, 0.4, 0.9, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "frutos rojos": [50, 1.0, 12.0, 0.3, 4.5, { cantidad: 1, unidad: "taza", gramos: 250 }],
+    "chile guajillo": [300, 12, 52, 12, 30, null],
+
     
 
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
@@ -103,7 +103,8 @@ const DB = {
     "mayonesa": [680, 1.0, 1.0, 75.0, 0.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
     "nueces": [654, 15.2, 13.7, 65.2, 6.7, { cantidad: 1, unidad: "porcion", gramos: 30 }],
     "pistaches": [562, 20.2, 27.2, 45.3, 10.6, { cantidad: 1, unidad: "porcion", gramos: 30 }],
-
+    "manteca de cerdo": [900, 0.0, 0.0, 100.0, 0.0, { cantidad: 1, unidad: "cucharada", gramos: 15 }],
+    "especias": [0, 0.0, 0.0, 0.0, 0.0, null],
     //  formato: [kcal, proteína, carbohidratos, grasas, fibra]
     // LEGUMINOSAS Y PROTEÍNAS 
     "frijoles negros": [341, 21.6, 62.4, 1.4, 15.5, { cantidad: 1, unidad: "taza", gramos: 250 }],
@@ -123,6 +124,7 @@ const DB = {
     "carne asada": [220, 26.0, 0.0, 12.0, 0.0, null],
     "camarón": [99, 24.0, 0.2, 0.3, 0.0, null],
     "chuleta de cerdo": [220, 20.0, 0.0, 15.0, 0.0, null],
+    "pierna de cerdo": [170, 20, 0, 8, 0, null],
     "huevo": [143, 12.6, 0.7, 9.5, 0.0, { cantidad: 1, unidad: "pieza", gramos: 50 }],
     "clara de huevo": [52, 10.9, 0.7, 0.2, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
     "pechuga de pollo sin piel": [165, 31.0, 0.0, 3.6, 0.0, { cantidad: 1, unidad: "taza", gramos: 250 }],
